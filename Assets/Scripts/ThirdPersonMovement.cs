@@ -7,8 +7,8 @@ public class ThirdPersonMovement : MonoBehaviour {
     // Start is called before the first frame update
     public CharacterController controller;
     public Transform cam;
-    [SerializeField] public float speed = 6f;
-    [SerializeField] public float turnSmoothTime = 0.1f;
+    [SerializeField] private float speed = 6f;
+    [SerializeField] private float turnSmoothTime = 0.1f;
     private float horitzontal;
     private float vertical;
     private float angle;
