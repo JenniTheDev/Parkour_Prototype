@@ -7,7 +7,7 @@ public class SpawnManager : MonoBehaviour {
     // private int numberOfPrefabs;
     private int somePrefab;
     [SerializeField] private GameObject obstaclePrefab;
-    private Vector3 spawnPos = new Vector3(29, 0, -5);
+    private Vector3 spawnPos = new Vector3(23, 0, -5);
     [SerializeField] private float startDelay = 2;
     [SerializeField] private float repeatRate = 5;
 
@@ -29,6 +29,6 @@ public class SpawnManager : MonoBehaviour {
 
     public void SpawnObstacle() {
         somePrefab = Random.RandomRange(0, 5);
-        Instantiate(prefabs[somePrefab], spawnPos, obstaclePrefab.transform.rotation);
+        Instantiate(prefabs[somePrefab], spawnPos, prefabs[somePrefab].transform.rotation);
     }
 }
