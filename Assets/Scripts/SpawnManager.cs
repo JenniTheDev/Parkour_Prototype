@@ -1,5 +1,7 @@
 ﻿//using System.Collections;
 //using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using UnityEngine;
 
@@ -15,12 +17,16 @@ public class SpawnManager : MonoBehaviour {
     [SerializeField] private float startDelay = 2;
     [SerializeField] private float repeatRate = 6;
 
-    [SerializeField] private GameObject[] prefabs = new GameObject[5];
+    // List to dynamically allocate more prefab types ?
+    // This gave an error for Index being out of range
+    // [SerializeField] private List<GameObject> prefabs = new List<GameObject>();
+    // An array may not be best when you have to put a number for how many objects?
+     [SerializeField] private GameObject[] prefabs = new GameObject[5];
 
-    // Start is called before the first frame update
+  
     void Start() {
 
-
+       // prefabs = Resources.LoadAll<GameObject>("Prefabs").ToList();
         InvokeRepeating("SpawnObstacle", startDelay, repeatRate);
 
 
@@ -37,7 +43,7 @@ public class SpawnManager : MonoBehaviour {
         // can this be figured out when the obstacles are pooled at the begining? 
         spawnX = 26;
         spawnZ = Random.Range(-17, -2);
-        
+
         somePrefab = Random.Range(0, 5);
         spawnY = prefabs[somePrefab].GetComponent<MeshCollider>().bounds.center.y - spawnPos.y;
         spawnPos = new UnityEngine.Vector3(spawnX, spawnY, spawnZ);

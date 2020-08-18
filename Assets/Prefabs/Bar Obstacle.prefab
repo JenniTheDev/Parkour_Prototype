@@ -1467,6 +1467,7 @@ GameObject:
   - component: {fileID: 1123805377707203241}
   - component: {fileID: 1123805377707203240}
   - component: {fileID: 7355960829242403466}
+  - component: {fileID: -3648322488579059809}
   m_Layer: 8
   m_Name: Bar Obstacle
   m_TagString: Untagged
@@ -1520,3 +1521,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!64 &-3648322488579059809
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123805377707203286}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
