@@ -20,6 +20,7 @@ public class ObjectMoveAcross : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        rb.AddForce(-transform.right * speed);
+        // rb.AddForce(-transform.right * speed);
+        rb.velocity = new Vector3(-3, 0, 0) * speed;
     }
 }

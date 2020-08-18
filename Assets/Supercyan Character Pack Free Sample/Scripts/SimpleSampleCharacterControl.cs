@@ -1,16 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class SimpleSampleCharacterControl : MonoBehaviour
-{
-    public void Initialize(GameObject character)
-    {
+public class SimpleSampleCharacterControl : MonoBehaviour {
+    public void Initialize(GameObject character) {
         m_animator = character.GetComponent<Animator>();
         m_rigidBody = character.GetComponent<Rigidbody>();
     }
 
-    private enum ControlMode
-    {
+    private enum ControlMode {
         /// <summary>
         /// Up moves the character forward, left and right turn the character gradually and down moves the character backwards
         /// </summary>
@@ -45,22 +42,18 @@ public class SimpleSampleCharacterControl : MonoBehaviour
     private float m_minJumpInterval = 0.25f;
 
     private bool m_isGrounded;
-    
+
     private List<Collider> m_collisions = new List<Collider>();
 
-    void Awake()
-    {
-        if(!m_animator) { gameObject.GetComponent<Animator>(); }
-        if(!m_rigidBody) { gameObject.GetComponent<Animator>(); }
+    void Awake() {
+        if (!m_animator) { gameObject.GetComponent<Animator>(); }
+        if (!m_rigidBody) { gameObject.GetComponent<Animator>(); }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
+    private void OnCollisionEnter(Collision collision) {
         ContactPoint[] contactPoints = collision.contacts;
-        for(int i = 0; i < contactPoints.Length; i++)
-        {
-            if (Vector3.Dot(contactPoints[i].normal, Vector3.up) > 0.5f)
-            {
+        for (int i = 0; i < contactPoints.Length; i++) {
+            if (Vector3.Dot(contactPoints[i].normal, Vector3.up) > 0.5f) {
                 if (!m_collisions.Contains(collision.collider)) {
                     m_collisions.Add(collision.collider);
                 }
@@ -69,50 +62,39 @@ public class SimpleSampleCharacterControl : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay(Collision collision)
-    {
+    private void OnCollisionStay(Collision collision) {
         ContactPoint[] contactPoints = collision.contacts;
         bool validSurfaceNormal = false;
-        for (int i = 0; i < contactPoints.Length; i++)
-        {
-            if (Vector3.Dot(contactPoints[i].normal, Vector3.up) > 0.5f)
-            {
+        for (int i = 0; i < contactPoints.Length; i++) {
+            if (Vector3.Dot(contactPoints[i].normal, Vector3.up) > 0.5f) {
                 validSurfaceNormal = true; break;
             }
         }
 
-        if(validSurfaceNormal)
-        {
+        if (validSurfaceNormal) {
             m_isGrounded = true;
-            if (!m_collisions.Contains(collision.collider))
-            {
+            if (!m_collisions.Contains(collision.collider)) {
                 m_collisions.Add(collision.collider);
             }
-        } else
-        {
-            if (m_collisions.Contains(collision.collider))
-            {
+        } else {
+            if (m_collisions.Contains(collision.collider)) {
                 m_collisions.Remove(collision.collider);
             }
             if (m_collisions.Count == 0) { m_isGrounded = false; }
         }
     }
 
-    private void OnCollisionExit(Collision collision)
-    {
-        if(m_collisions.Contains(collision.collider))
-        {
+    private void OnCollisionExit(Collision collision) {
+        if (m_collisions.Contains(collision.collider)) {
             m_collisions.Remove(collision.collider);
         }
         if (m_collisions.Count == 0) { m_isGrounded = false; }
     }
 
-	void FixedUpdate ()
-    {
+    void FixedUpdate() {
         m_animator.SetBool("Grounded", m_isGrounded);
 
-        switch(m_controlMode)
-        {
+        switch (m_controlMode) {
             case ControlMode.Direct:
                 DirectUpdate();
                 break;
@@ -129,18 +111,15 @@ public class SimpleSampleCharacterControl : MonoBehaviour
         m_wasGrounded = m_isGrounded;
     }
 
-    private void TankUpdate()
-    {
+    private void TankUpdate() {
         float v = Input.GetAxis("Vertical");
         float h = Input.GetAxis("Horizontal");
 
         bool walk = Input.GetKey(KeyCode.LeftShift);
 
         if (v < 0) {
-            if (walk) { v *= m_backwardsWalkScale; }
-            else { v *= m_backwardRunScale; }
-        } else if(walk)
-        {
+            if (walk) { v *= m_backwardsWalkScale; } else { v *= m_backwardRunScale; }
+        } else if (walk) {
             v *= m_walkScale;
         }
 
@@ -155,15 +134,13 @@ public class SimpleSampleCharacterControl : MonoBehaviour
         JumpingAndLanding();
     }
 
-    private void DirectUpdate()
-    {
+    private void DirectUpdate() {
         float v = Input.GetAxis("Vertical");
         float h = Input.GetAxis("Horizontal");
 
         Transform camera = Camera.main.transform;
 
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
+        if (Input.GetKey(KeyCode.LeftShift)) {
             v *= m_walkScale;
             h *= m_walkScale;
         }
@@ -177,8 +154,7 @@ public class SimpleSampleCharacterControl : MonoBehaviour
         direction.y = 0;
         direction = direction.normalized * directionLength;
 
-        if(direction != Vector3.zero)
-        {
+        if (direction != Vector3.zero) {
             m_currentDirection = Vector3.Slerp(m_currentDirection, direction, Time.deltaTime * m_interpolation);
 
             transform.rotation = Quaternion.LookRotation(m_currentDirection);
@@ -190,23 +166,19 @@ public class SimpleSampleCharacterControl : MonoBehaviour
         JumpingAndLanding();
     }
 
-    private void JumpingAndLanding()
-    {
+    private void JumpingAndLanding() {
         bool jumpCooldownOver = (Time.time - m_jumpTimeStamp) >= m_minJumpInterval;
 
-        if (jumpCooldownOver && m_isGrounded && Input.GetKey(KeyCode.Space))
-        {
+        if (jumpCooldownOver && m_isGrounded && Input.GetKey(KeyCode.Space)) {
             m_jumpTimeStamp = Time.time;
             m_rigidBody.AddForce(Vector3.up * m_jumpForce, ForceMode.Impulse);
         }
 
-        if (!m_wasGrounded && m_isGrounded)
-        {
+        if (!m_wasGrounded && m_isGrounded) {
             m_animator.SetTrigger("Land");
         }
 
-        if (!m_isGrounded && m_wasGrounded)
-        {
+        if (!m_isGrounded && m_wasGrounded) {
             m_animator.SetTrigger("Jump");
         }
     }
