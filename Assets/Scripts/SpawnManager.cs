@@ -8,7 +8,7 @@ public class SpawnManager : MonoBehaviour {
     // private int numberOfPrefabs;
     private int somePrefab;
     private float spawnY;
-    private float spawnX;
+    private float spawnX ;
     private float spawnZ;
     [SerializeField] private GameObject obstaclePrefab;
     private UnityEngine.Vector3 spawnPos;
@@ -35,9 +35,11 @@ public class SpawnManager : MonoBehaviour {
 
         // need to get the mesh collider for each obstacle
         // can this be figured out when the obstacles are pooled at the begining? 
+        spawnX = 26;
+        spawnZ = Random.Range(-17, -2);
         
-        spawnY = GetComponent<MeshCollider>().bounds.center.y - spawnPos.y;
         somePrefab = Random.Range(0, 5);
+        spawnY = prefabs[somePrefab].GetComponent<MeshCollider>().bounds.center.y - spawnPos.y;
         spawnPos = new UnityEngine.Vector3(spawnX, spawnY, spawnZ);
         Instantiate(prefabs[somePrefab], spawnPos, prefabs[somePrefab].transform.rotation);
     }
