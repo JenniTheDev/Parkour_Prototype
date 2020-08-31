@@ -27,7 +27,8 @@ public class SpawnManager : MonoBehaviour {
     void Start() {
 
        // prefabs = Resources.LoadAll<GameObject>("Prefabs").ToList();
-        InvokeRepeating("SpawnObstacle", startDelay, repeatRate);
+       // 
+       // InvokeRepeating("SpawnObstacle", startDelay, repeatRate);
 
 
     }
@@ -47,7 +48,7 @@ public class SpawnManager : MonoBehaviour {
         somePrefab = Random.Range(0, 5);
         spawnY = prefabs[somePrefab].GetComponent<MeshCollider>().bounds.center.y - spawnPos.y;
         spawnPos = new UnityEngine.Vector3(spawnX, spawnY, spawnZ);
-        Instantiate(prefabs[somePrefab], spawnPos, prefabs[somePrefab].transform.rotation);
+        // Instantiate(prefabs[somePrefab], spawnPos, prefabs[somePrefab].transform.rotation);
     }
 
     
