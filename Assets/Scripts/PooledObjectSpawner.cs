@@ -3,12 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PooledObjectSpawner : MonoBehaviour {
-
-    [SerializeField] private GameObjectPool barObstaclePool;
-    [SerializeField] private GameObjectPool cubePool;
-    [SerializeField] private GameObjectPool hurdlePool;
-    [SerializeField] private GameObjectPool prismPool;
-    [SerializeField] private GameObjectPool wallCubePool;
+    [SerializeField] private GameObjectPool[] obstaclePools;
+    [SerializeField] private Transform startPos;
 
     private float spawnY;
     private float spawnX;
@@ -16,34 +12,41 @@ public class PooledObjectSpawner : MonoBehaviour {
 
     private UnityEngine.Vector3 spawnPos;
     [SerializeField] private float startDelay = 2;
-    [SerializeField] private float repeatRate = 6;
+    [SerializeField] private float startRatePerMinute = 30;
+    [SerializeField] private float speedIncreasePerSpawn = 1;
+    [SerializeField] private bool isRepeating = true;
+
+    [SerializeField] private float ratePerMinute;
 
     void Start() {
+        ratePerMinute = 60 / startRatePerMinute;
+        speedIncreasePerSpawn /= 60;
         StartCoroutine(StartObstacleCourse());
     }
 
     private IEnumerator StartObstacleCourse() {
+        int randPoolNum;
+        GameObjectPool randPool;
+        GameObject obstacleToMove;
 
-        // how can it randomly pick GamePoolObject types to spawn?
-        for(int i = 0; i < 10; i++) {
-            MoveObstacles(barObstaclePool.Get());   // this should probably be called PlaceObstacleInSpawnPositon ?
-            yield return new WaitForEndOfFrame();
+        while(isRepeating) {
+            randPoolNum = Random.Range(0, obstaclePools.Length - 1);
+            randPool = obstaclePools[randPoolNum];
+            obstacleToMove = randPool.Get();
+            obstacleToMove.SetActive(true);
+
+            MoveObstacles(obstacleToMove);
+            yield return new WaitForSeconds(ratePerMinute);
+            ratePerMinute -= speedIncreasePerSpawn;
         }
     }
 
-    private void MoveObstacles(GameObject go) {     // this should probably be called PlaceObstacleInSpawnPositon ?
+    private void MoveObstacles(GameObject go) {
+        Vector3 spawnPos = startPos.position;
+        spawnPos.z = Random.Range(-17, -2);
+        spawnPos.y += go.transform.lossyScale.y * 0.5f;
 
-        // get location
-        spawnX = 26;
-        spawnZ = Random.Range(-17, -2);       
-        spawnY = go.GetComponent<MeshCollider>().bounds.center.y - spawnPos.y;
-
-        // place object in spot
-        spawnPos = new UnityEngine.Vector3(spawnX, spawnY, spawnZ);
-
-        // go.ObjectMoveAcross() ? 
-
-
+        go.transform.position = spawnPos;
     }
 
 

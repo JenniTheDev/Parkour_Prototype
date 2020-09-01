@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6488956598957279363}
   - component: {fileID: 6488956598957279364}
   - component: {fileID: 6488956598957279365}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: -6458660274028303999}
   - component: {fileID: 854937410737941092}
   - component: {fileID: -3831974854908255252}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Hurdle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 6488956599463052328}
   - component: {fileID: 6488956599463052329}
   - component: {fileID: 6488956599463052330}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -726,7 +726,7 @@ GameObject:
   - component: {fileID: 3976155681421195446}
   - component: {fileID: 4663760500755804376}
   - component: {fileID: 8881144558742825341}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

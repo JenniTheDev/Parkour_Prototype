@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1123805375866572967}
   - component: {fileID: 1123805375866572964}
   - component: {fileID: 1123805375866572987}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 1123805376780747481}
   - component: {fileID: 1123805376780747462}
   - component: {fileID: 1123805376780747482}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -662,7 +662,7 @@ GameObject:
   - component: {fileID: 1123805377007332402}
   - component: {fileID: 1123805377007332403}
   - component: {fileID: 1123805377007332407}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1469,7 +1469,7 @@ GameObject:
   - component: {fileID: 7355960829242403466}
   - component: {fileID: -3648322488579059809}
   - component: {fileID: 311168114132692825}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Bar Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

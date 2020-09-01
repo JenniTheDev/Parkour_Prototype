@@ -15,14 +15,10 @@ public class GameObjectPool : MonoBehaviour {
 
     private List<GameObject> Pool { get; } = new List<GameObject>();
 
-    private IEnumerator maintainPool;
     private bool isMaintaining = false;
 
     #region MonoBehaviour
-    private void Start() {
-        maintainPool = Fill();
-        MaintainPool();
-    }
+    private void Start() {    }
 
     private void OnDisable() {
         StopAllCoroutines();
@@ -36,7 +32,6 @@ public class GameObjectPool : MonoBehaviour {
             }
         }
 
-        MaintainPool();
         return Add();
     }
 
@@ -47,21 +42,16 @@ public class GameObjectPool : MonoBehaviour {
         return go;
     }
 
-    private void MaintainPool() {
-        if (!isMaintaining) {
-            StartCoroutine(maintainPool);
-        }
-    }
-
     public IEnumerator Fill() {
         isMaintaining = true;
-        int freeCount = 0;
+        int freeCount, delta;
 
+        freeCount = 0;
         foreach (var go in Pool) {
             if (!go.activeSelf) { freeCount++; }
         }
 
-        int delta = 0;
+        delta = 0;
         if (freeCount < (min + buffer)) {
             delta = (min + buffer) - freeCount;
             for (int i = 0; i < delta; i++) {
