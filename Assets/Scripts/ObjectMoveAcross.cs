@@ -15,8 +15,9 @@ public class ObjectMoveAcross : MonoBehaviour {
 
     
     void Update() {
+        // translating can cause problems, use force instead
         // transform.Translate(Vector3.left * Time.deltaTime * speed);
-       // rb.AddForce(-transform.right * speed);
+        rb.AddForce(-transform.right * speed);
     }
 
     private void FixedUpdate() {

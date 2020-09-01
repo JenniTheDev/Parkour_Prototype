@@ -23,19 +23,25 @@ public class PooledObjectSpawner : MonoBehaviour {
     }
 
     private IEnumerator StartObstacleCourse() {
+
+        // how can it randomly pick GamePoolObject types to spawn?
         for(int i = 0; i < 10; i++) {
-            MoveObstacles(barObstaclePool.Get());
+            MoveObstacles(barObstaclePool.Get());   // this should probably be called PlaceObstacleInSpawnPositon ?
             yield return new WaitForEndOfFrame();
         }
     }
 
-    private void MoveObstacles(GameObject go) {
-        spawnX = 26;
-        spawnZ = Random.Range(-17, -2);
+    private void MoveObstacles(GameObject go) {     // this should probably be called PlaceObstacleInSpawnPositon ?
 
-        
+        // get location
+        spawnX = 26;
+        spawnZ = Random.Range(-17, -2);       
         spawnY = go.GetComponent<MeshCollider>().bounds.center.y - spawnPos.y;
+
+        // place object in spot
         spawnPos = new UnityEngine.Vector3(spawnX, spawnY, spawnZ);
+
+        // go.ObjectMoveAcross() ? 
 
 
     }
