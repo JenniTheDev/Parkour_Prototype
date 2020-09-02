@@ -1988,9 +1988,6 @@ MonoBehaviour:
   killLayers:
     serializedVersion: 2
     m_Bits: 1024
-  player:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &1291263275
 GameObject:
   m_ObjectHideFlags: 0
@@ -2684,11 +2681,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4549428611729446, guid: 0e74cf81e6fd82546b4797f71ceffb81, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 0.84
       objectReference: {fileID: 0}
     - target: {fileID: 4549428611729446, guid: 0e74cf81e6fd82546b4797f71ceffb81, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 1.06
       objectReference: {fileID: 0}
     - target: {fileID: 4549428611729446, guid: 0e74cf81e6fd82546b4797f71ceffb81, type: 3}
       propertyPath: m_LocalPosition.z
