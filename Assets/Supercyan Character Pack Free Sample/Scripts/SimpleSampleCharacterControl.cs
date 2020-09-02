@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 
 public class SimpleSampleCharacterControl : MonoBehaviour {
+
+    // this is mine here
+    [SerializeField] private LayerMask killLayers;
     public void Initialize(GameObject character) {
         m_animator = character.GetComponent<Animator>();
         m_rigidBody = character.GetComponent<Rigidbody>();
@@ -59,6 +62,10 @@ public class SimpleSampleCharacterControl : MonoBehaviour {
                 }
                 m_isGrounded = true;
             }
+        }
+        // this is mine
+        if (collision.gameObject.layer == killLayers) {
+            Destroy(gameObject);
         }
     }
 
@@ -183,9 +190,11 @@ public class SimpleSampleCharacterControl : MonoBehaviour {
         }
     }
 
-   
+    
+    
 
-   
+    
+
 
 
 

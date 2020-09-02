@@ -2,6 +2,7 @@
 
 public class KillZone : MonoBehaviour {
     [SerializeField] private LayerMask killLayers;
+    [SerializeField] private LayerMask player;
 
 
     private void OnTriggerEnter(Collider other) {
@@ -9,7 +10,9 @@ public class KillZone : MonoBehaviour {
             other.gameObject.SetActive(false);
         }
     
-
+        if (other.gameObject.layer == player) {
+            Destroy(other.gameObject);
+        }
     }
 
 
