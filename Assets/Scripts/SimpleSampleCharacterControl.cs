@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class SimpleSampleCharacterControl : MonoBehaviour {
+public class SimpleSampleCharacterControl : MonoBehaviour, IKillZoneResetable {
 
     
     public void Initialize(GameObject character) {
@@ -28,6 +28,7 @@ public class SimpleSampleCharacterControl : MonoBehaviour {
     [SerializeField] private Rigidbody m_rigidBody;
 
     [SerializeField] private ControlMode m_controlMode = ControlMode.Direct;
+    [SerializeField] private Transform startPos;
 
     private float m_currentV = 0;
     private float m_currentH = 0;
@@ -50,6 +51,7 @@ public class SimpleSampleCharacterControl : MonoBehaviour {
     void Awake() {
         if (!m_animator) { gameObject.GetComponent<Animator>(); }
         if (!m_rigidBody) { gameObject.GetComponent<Animator>(); }
+        Vector3 spawnPos = startPos.position;
     }
 
     private void OnCollisionEnter(Collision collision) {
@@ -188,7 +190,10 @@ public class SimpleSampleCharacterControl : MonoBehaviour {
         }
     }
 
-    
+    //TODO: Reset player position
+    public void KillZoneReset() {
+        transform.position = startPos.position;
+    }
     
 
     

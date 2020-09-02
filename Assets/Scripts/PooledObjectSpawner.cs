@@ -11,7 +11,7 @@ public class PooledObjectSpawner : MonoBehaviour {
     private float spawnZ;
 
     private UnityEngine.Vector3 spawnPos;
-    [SerializeField] private float startDelay = 2;
+    // [SerializeField] private float startDelay = 2;
     [SerializeField] private float startRatePerMinute = 30;
     [SerializeField] private float speedIncreasePerSpawn = 1;
     [SerializeField] private bool isRepeating = true;

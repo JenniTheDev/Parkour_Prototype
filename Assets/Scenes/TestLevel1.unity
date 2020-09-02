@@ -708,11 +708,10 @@ MonoBehaviour:
   - {fileID: 925199408}
   - {fileID: 506854867}
   startPos: {fileID: 1038437563}
-  startDelay: 2
   startRatePerMinute: 30
   speedIncreasePerSpawn: 1
   isRepeating: 1
-  ratePerMinute: 0
+  ratePerMinute: 30
 --- !u!1 &506854866
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,6 +791,36 @@ Transform:
   - {fileID: 1276136579}
   m_Father: {fileID: 0}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &686075790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 686075791}
+  m_Layer: 0
+  m_Name: CharStartPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &686075791
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686075790}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 1, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
@@ -1988,9 +2017,6 @@ MonoBehaviour:
   killLayers:
     serializedVersion: 2
     m_Bits: 1024
-  player:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &1291263275
 GameObject:
   m_ObjectHideFlags: 0
@@ -2778,6 +2804,11 @@ PrefabInstance:
       propertyPath: m_moveSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8748688856612009363, guid: 0e74cf81e6fd82546b4797f71ceffb81,
+        type: 3}
+      propertyPath: startPos
+      value: 
+      objectReference: {fileID: 686075791}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e74cf81e6fd82546b4797f71ceffb81, type: 3}
 --- !u!4 &1596450336 stripped
